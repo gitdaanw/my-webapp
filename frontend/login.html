@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="NL">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welkom op Weerheim.EU, deze pagina is voornamelijk voor mij om webdevelopment te leren en dingen uit te proberen">
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="/resources/css/stylesheet.css">
+    
+    <title>Login</title>
+    
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/resources/media/favicon/favicon/dw-logo-apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/resources/media/favicon/favicon/dw-logo-favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/resources/media/favicon/favicon/dw-logo-favicon-16x16.png">
+    <link rel="manifest" href="/resources/media/favicon/favicon/site.webmanifest">
+    <link rel="icon" href="/resources/media/favicon/favicon/dw-logo-favicon.ico" type="image/x-icon">
+
+    <!-- JS -->
+     <!-- Load header and footer through JS -->
+     <script src="/resources/js/dynamic-added-elements.js" defer></script>   <!-- defer causes browser to execute script after HTML -->
+     
+     <!-- hamburgermenu navbar -->
+     <script src="/resources/js/navbar.js" defer></script>
+
+     <!-- login script -->
+     <script src="/resources/js/login.js" defer></script>
+</head>
+
+<body>
+    <!-- load header using JS -->
+    <div id="header"></div>
+
+    <section class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Gebruikersnaam" required>
+            <input type="password" id="password" placeholder="Wachtwoord" required>
+            <button type="submit">Inloggen</button>
+        </form>
+        <p id="errorMessage" class="hidden">Invalid username or password!</p>
+    </section>
+
+    <!-- load footer using JS -->
+    <div id="footer"></div>
+
+</body>
+</html>

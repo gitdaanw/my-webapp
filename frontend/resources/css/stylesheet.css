@@ -1,0 +1,548 @@
+/* Color palette:
+https://coolors.co/palette/e3f2fd-bbdefb-90caf9-64b5f6-42a5f5-2196f3-1e88e5-1976d2-1565c0-0d47a1
+ #E3F2FD
+ #BBDEFB
+ #90CAF9
+ #64B5F6
+ #42A5F5
+ #2196F3
+ #1E88E5
+ #1976D2
+ #1565C0
+ #0D47A1
+ */
+
+/* Global */
+
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #E3F2FD;
+    color: #1565C0;
+    text-align: center;
+    padding-top: 90px;
+}
+
+h3 {
+    font-size: xx-large;
+    margin: 40px auto 30px auto;
+}
+
+a {
+    color: #0D47A1;
+    text-decoration: none;
+    font-weight: bolder;
+    margin: 5px;
+}
+
+a:not(.navbar-title-link):visited {
+    text-decoration: none;
+    color: #1565C0;
+}
+
+a:not(.navbar-title-link):hover {
+    text-decoration: underline;
+    color: #42A5F5;
+    opacity: 0.5; /* gives link a little transparancy */
+}
+
+/* nav bar specific styling */
+
+.header-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #BBDEFB;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.navbar-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 10px;
+    border: 5px #90CAF9 solid;
+    width: 100%;
+    max-width: 80vw;
+    margin: 10px auto;
+    border-radius: 20px;
+    background-color:#BBDEFB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* tells browser to account for margin and padding, not to exceed width of screen*/
+}
+
+.navbar-title:hover {
+    background-color: #64B5F6;
+    color: #E3F2FD;
+}
+
+.navbar-logo img {
+    height: 50px;
+    width: auto;
+    display: block;
+}
+
+.navbar-title-link {
+    margin-left: 10px; 
+}
+
+.navbar-links {
+    margin: 10px;
+}
+
+.navbar-hamburger-menu {
+    display: none;
+}
+
+/* main body styling */
+
+.main-media img {
+    width: 90%;
+    max-width: 1800px;
+    height: auto;
+    max-height: 60vh;
+    display: block; 
+    border-radius: 10px; 
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    margin: 10px auto;
+    padding: 10px;
+    object-fit: contain;
+}
+
+.main-media fieldset {
+    padding: 20px;
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border: 2px solid #BBDEFB;
+    border-radius: 12px; 
+    background-color: rgba(255, 255, 255, 0.8); 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+/* desktop only */
+@media (hover: hover) {
+    .main-media fieldset:hover {
+        transform: scale(1.05); 
+        transition: 0.2s ease-in-out;
+    }
+}
+
+.main-media legend {
+    font-weight: 900;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    color: #1565C0;
+    background: #BBDEFB;
+    border-radius: 8px;
+}
+
+.main-media article {
+    font-size: larger;
+    font-weight: bolder;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+    font-weight: lighter;
+}
+
+#slideshowImage {
+    cursor: pointer;
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.3s ease-in;
+}
+
+/* About Me */
+
+.about-me-body-image {
+    width: 60%;
+    height: auto;
+    margin: 10px auto;
+    padding: 10px;
+    display: block;
+    margin: 60px auto 0 auto;
+}
+
+.about-me-body q {
+    color: #0D47A1;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: larger;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 9;
+}
+
+/* Picture collection */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.photo-card {
+    padding: 10px;
+    border: 2px solid #90CAF9;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #E3F2FD;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    margin: 10px auto;
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .photo-card {
+        max-width: 800px;
+    }
+}
+
+.photo-card img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.photo-info {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.photo-label {
+    font-weight: bold;
+}
+
+.navigation-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.navigation-controls button {
+    padding: 12px 18px;
+    margin: 5px 12px;
+    background-color: #2196F3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.navigation-controls button:hover {
+    background: #1976D2;
+}
+
+.navigation-controls button:disabled {
+    background-color: #bbdefb;
+    cursor: not-allowed;
+}
+
+/* Lightbox Styling */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 95%;
+    border-radius: 10px;
+    height: auto;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+/* login */
+
+.login-container {
+    background: #E3F2FD;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+    margin: 80px auto 0 auto;
+}
+
+.login-container input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-container button {
+    width: 90%;
+    padding: 10px;
+    background: #2196F3;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* hover only for desktop */
+@media (hover: hover) {
+    .login-container button:hover {
+        background: #1976D2;
+        transform: scale(1.05); 
+        transition: 0.2s ease-in-out;
+    }
+}
+
+/* button press on mobile */
+@media (hover: none) {
+    .login-container button:active {
+        background-color: #1976D2;
+        transform: scale(0.95); /*shrink a little*/
+        transition: 0.1s ease-in-out;
+    }
+}
+
+/* add picture specific */
+.add-picture-body h2 {
+    margin: 80px auto 0 auto;
+}
+
+.add-picture-body button {
+    padding: 8px 15px;
+    margin: 10px auto 0 auto;
+    background-color: #2196F3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-picture-body label {
+    font-weight: bold;
+    color: #0D47A1;
+    margin-bottom: 2px;
+}
+
+.add-picture-body form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 400px;
+    margin: 20px auto; 
+    padding: 40px;
+    background: #BBDEFB;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.add-picture-body input,
+.add-picture-body textarea {
+    width: 100%; /* Make them full width */
+    padding: 8px;
+    border: 1px solid #BBDEFB;
+    border-radius: 5px;
+    background-color: #F8F9FA;
+    color: #333;
+}
+
+.add-picture-body textarea {
+    height: 80px;
+    resize: none;
+}
+
+.add-picture-body input[readonly],
+.add-picture-body textarea[readonly] {
+    background-color: #f0f0f0;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* footer specific */
+
+footer {
+    width: 80%;
+    margin: 40px auto 5px auto; 
+    max-width: 100%;
+    padding: 20px 10px;
+    background-color: #BBDEFB;
+    text-align: center;
+    box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.2); 
+    border-radius: 12px 12px 0 0; 
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+/* desktop specific */
+@media (hover: hover) {
+    footer:hover {
+        background-color: #90CAF9;
+        transform: translateY(-2px);
+    }
+}
+
+@media (hover: none) {
+    footer:hover {
+        transform: none;
+    }
+}
+
+footer .subheader {
+    margin: 10px auto;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #0D47A1;
+}
+
+footer .legal {
+    font-size: 0.85rem;
+    color: #333;
+    font-weight: 400;
+    margin-top: 5px;
+    opacity: 0.8;
+}
+
+footer a {
+    text-decoration: underline;
+}
+
+/* SMALL SCREENS MOBILE */
+@media (max-width: 870px) {
+    body {
+        padding-top: 30px;
+    }
+
+    h3 {
+        font-size: xx-large;
+        margin: 50px auto 30px auto;
+    }
+
+    .header-navbar {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: center;
+        padding: 10px 15px; 
+    }
+
+    .navbar-logo img {
+        height: 30px; 
+    }
+
+    .navbar-title {
+        font-size: 1rem; 
+        margin: 0; 
+        padding: 0; 
+    }
+
+    .navbar-title-link {
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    .navbar-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px; 
+        right: 0;
+        width: 90%;
+        left: 5%;
+        background-color: #BBDEFB;
+        text-align: left;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-links a {
+        padding: 10px;
+        display: block;
+    }
+
+    /* Show menu when active */
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .header-navbar a {
+        margin: 0;
+        padding: 5px;
+    }
+
+    .navbar-hamburger-menu {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px;
+        color: #0D47A1;
+        margin-right: 30px;
+    }
+
+    .lightbox img {
+        max-width: 95%;
+        max-height: 95%;
+        height: auto;
+    }
+
+    .navigation-controls {
+        flex-direction: column;
+        gap: 5px; 
+    }
+
+    .main-media img {
+        width: 90%;
+        max-height: 600px;
+        object-fit: contain;
+    }
+
+    .login-container {
+        margin-top: 60px;
+    }
+
+    
+}

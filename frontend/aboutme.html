@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Styling -->
+    <link rel="stylesheet" href="/resources/css/stylesheet.css">
+
+    <title>About Me</title>
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/resources/media/favicon/favicon/dw-logo-apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/resources/media/favicon/favicon/dw-logo-favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/resources/media/favicon/favicon/dw-logo-favicon-16x16.png">
+    <link rel="manifest" href="/resources/media/favicon/favicon/site.webmanifest">
+    <link rel="icon" href="/resources/media/favicon/favicon/dw-logo-favicon.ico" type="image/x-icon">
+    
+    <!-- JS -->
+     <!-- Load header and footer through JS -->
+     <script src="/resources/js/dynamic-added-elements.js" defer></script>   <!-- defer causes browser to execute script after HTML -->
+
+     <!-- hamburgermenu navbar -->
+     <script src="/resources/js/navbar.js" defer></script>
+
+</head>
+
+<body>
+    <div id="header"></div> <!-- Add header dynamically -->
+
+    <section class="about-me-body">
+        <img class="about-me-body-image" src="resources/media/images/20250128_1650_brug_tussen_lech_zug.jpg" alt="Foto genomen op 28-01-2025, brug over rivier Lech tussen Lech & Zug">
+        
+        <q>Life is too short to say no to cake</q><p>--Daan Weerheim</p>
+
+        <header>
+            <h3>Over Mij</h3>
+        </header>
+        <section>
+            <p>Mijn naam is Daan, momenteel volg ik op de Haagse Hogeschool een studie Software Engineering.</p>
+         
+            <p>Als onderdeel van mijn opleiding verdiep ik mij in HTML, CSS en Javascript. Ik gebruik deze website
+                om kennis te maken met verschillende technieken en de basis van webdevelopment eigen te maken. 
+            </p>
+        <header>
+            <h3>De Website</h3>
+        </header>
+        <p>Voor het 2e leerjaar maken we in het semester webdevelopment een eigen website. Deze website laat 
+            een persoonlijke verzameling zien. Ik heb gekozen voor een verzameling foto's en video's. 
+            Deze beelden zijn door mijzelf gemaakt en kunnen door middel van deze website met de wereld worden gedeeld. 
+        </p>
+
+        <header>
+            <h3>Een klein voorproefje</h3>
+        </header>
+
+        <!-- rel=0 shows only video from this channels after playing -->
+        <div class="video-container">
+            <iframe 
+                frameborder="0"
+                src="https://www.youtube.com/embed/jmRYwVCnnrc?rel=0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        </section>
+
+    </section>
+
+    <div id="footer"></div>  <!-- Add footer dynamically -->
+
+
+</body>
+
+</html>

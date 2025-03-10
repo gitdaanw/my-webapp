@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="NL">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welkom op Weerheim.EU, deze pagina is voornamelijk voor mij om webdevelopment te leren en dingen uit te proberen">
+    
+    <!-- Styling -->
+    <link rel="stylesheet" href="/resources/css/stylesheet.css">
+    
+    <title>Weerheim.EU</title>
+    
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/resources/media/favicon/favicon/dw-logo-apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/resources/media/favicon/favicon/dw-logo-favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/resources/media/favicon/favicon/dw-logo-favicon-16x16.png">
+    <link rel="manifest" href="/resources/media/favicon/favicon/site.webmanifest">
+    <link rel="icon" href="/resources/media/favicon/favicon/dw-logo-favicon.ico" type="image/x-icon">
+
+    <!-- JS -->
+     <!-- Load header and footer through JS -->
+     <script src="/resources/js/dynamic-added-elements.js" defer></script>   <!-- defer causes browser to execute script after HTML -->
+     
+     <!-- hamburgermenu navbar -->
+     <script src="/resources/js/navbar.js" defer></script>
+
+     <!-- slideshow -->
+     <script src="/resources/js/slideshow.js" type="module"></script>
+</head>
+
+<body>
+    <!-- load header using JS -->
+    <div id="header"></div>
+
+    <section class="main-media">
+        <h3>Welkom!<br> Willekeurige Foto, klik voor een nieuwe!</h3>
+        <img id ="slideshowImage"  
+            alt="Slideshow Image"
+            style="cursor: pointer;">
+        <fieldset>
+            <legend>Picture Details</legend>
+            <article id="slideshowDescription">The above picture is made in Austria, at the hallstatter-see, this is also known for being the inspiration of the Frozen movies</article>
+        </fieldset>    
+    </section>
+
+    <!-- load footer using JS -->
+    <div id="footer"></div>
+
+</body>
+</html>
