@@ -1,6 +1,6 @@
 function updateNavbar() {
     const navbarLinksContainer = document.querySelector(".navbar-links");
-    const homeLink = `<a href="/index.html">Home</a>`;
+    const homeLink = `<a href="/">Home</a>`;
     const aboutMeLink = `<a href="/aboutme.html">Over Mij</a>`;
     const picturesLink = `<a href="/pictures.html">Foto's</a>`;
     const loggedInUser = localStorage.getItem("loggedInUser");
@@ -27,7 +27,7 @@ function updateNavbar() {
         document.getElementById("logoutLink").addEventListener("click", function () {
             alert("Uitloggen succesvol!");
             localStorage.removeItem("loggedInUser");
-            window.location.href = "/index.html";
+            window.location.href = "/";
         });
     }
 }
