@@ -1,12 +1,10 @@
-const express = require("express"); // impport express module
-const path = require("path"); // import path, used to work with file paths
+const express = require("express"); // impport express framework
+const path = require("path"); // import path module, this is used to work with file paths
 
 const webServer = express(); // create new instance of express
 const PORT = 3000; 
 
-// webServer.use(express.urlencoded({extended: false})); // allows parsing of body data
-
-// using a different filestructure, allows using the files from frontend folder
+// using a different filestructure, this allows the use of my files from frontend folder
 webServer.use(express.static(path.join(__dirname, "../frontend")));
 
 // remove .html from URLs
@@ -17,11 +15,11 @@ webServer.use((req, res, next) => {
     next();
 });
 
-// load the routes
+// load the API endpoints returning JSON data
 webServer.use("/pictures", require("./routes/pictures"));
 
 // path.join uses _dirname(current script location) to base filepath structure to used OS
-// then adds the correct html page
+// then serves correct .html file defined in frontend
 webServer.get("/:page", (req, res) => {
     const filePath = path.join(__dirname, `../frontend/${req.params.page}.html`);
     res.sendFile(filePath, (err) => {
