@@ -1,14 +1,21 @@
-function updateNavbar() {
+import { checkLogin } from "./utils/authentication-utils.js";
+
+async function updateNavbar() {
     const navbarLinksContainer = document.querySelector(".navbar-links");
     const homeLink = `<a href="/">Home</a>`;
     const aboutMeLink = `<a href="/aboutme.html">Over Mij</a>`;
     const picturesLink = `<a href="/pictures.html">Foto's</a>`;
-    const loggedInUser = localStorage.getItem("loggedInUser");
 
-    // clear existing links before adding new ones prevents null error
+    let loggedInUser = null;
+
+    try {
+        loggedInUser = await checkLogin(); // ✅ Always call this
+    } catch (e) {
+        console.error("Login check failed:", e);
+    }
+
     navbarLinksContainer.innerHTML = "";
 
-    // show links when logged in
     let authLink;
     if (loggedInUser) {
         authLink = `
@@ -16,21 +23,22 @@ function updateNavbar() {
             <a href="#" id="logoutLink">Uitloggen</a>
         `;
     } else {
-        authLink = `<a href="/login.html">Inloggen</a>`;    // if not logged in it shows inloggen
+        authLink = `<a href="/login.html">Inloggen</a>`;
     }
 
-    // inject links into navbar
     navbarLinksContainer.innerHTML = homeLink + aboutMeLink + picturesLink + authLink;
 
-    // log out functionality
     if (loggedInUser) {
-        document.getElementById("logoutLink").addEventListener("click", function () {
+        document.getElementById("logoutLink").addEventListener("click", async function () {
+            await fetch("/auth/logout", { method: "POST" });
             alert("Uitloggen succesvol!");
-            localStorage.removeItem("loggedInUser");
             window.location.href = "/";
         });
     }
 }
+
+window.updateNavbar = updateNavbar;
+
 
 function toggleMenu() {
     const menu = document.querySelector('.navbar-links');

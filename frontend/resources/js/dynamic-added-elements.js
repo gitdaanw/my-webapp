@@ -13,9 +13,12 @@ async function loadHeaderAndFooter() {
         loadComponent("header", "header.html"),
         loadComponent("footer", "footer.html")
     ]);
-
-    updateNavbar();
+    
+    if (typeof updateNavbar === "function") {
+        await updateNavbar();
+    }
 }
+
 
 // DOMContentLoaded event waits for page to be parsed and the fires below loadHeaderAndFooter function
 // async function tells javascript there are asynchronous operations allows to use await

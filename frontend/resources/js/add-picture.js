@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const loggedInUser = localStorage.getItem("loggedInUser");
     const addPictureForm = document.getElementById("addPictureForm");
     const submitButton = document.querySelector("button[type='submit']");
 
-    if (!loggedInUser) {
-        window.location.href = "index.html"; // redirect if not logged in
-    }
+    // if (!loggedInUser) {
+    //     window.location.href = "index.html"; // redirect if not logged in
+    // }
 
     // submit button listener
     submitButton.addEventListener("click", function () {
