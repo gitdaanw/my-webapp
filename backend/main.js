@@ -4,6 +4,12 @@ const path = require("path"); // import path module, this is used to work with f
 const webServer = express(); // create new instance of express
 const PORT = 3000; 
 
+// authentication
+const session = require("express-session");
+webServer.use(express.json());
+
+webServer.use(session({secret: "your-secret-key", resave: false, saveUninitialized: false}));
+
 // using a different filestructure, this allows the use of my files from frontend folder
 webServer.use(express.static(path.join(__dirname, "../frontend")));
 
@@ -17,6 +23,7 @@ webServer.use((req, res, next) => {
 
 // load the API endpoints returning JSON data
 webServer.use("/pictures", require("./routes/pictures"));
+webServer.use("/auth", require("./routes/authentication"));
 
 // path.join uses _dirname(current script location) to base filepath structure to used OS
 // then serves correct .html file defined in frontend
