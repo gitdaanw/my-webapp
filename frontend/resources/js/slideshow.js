@@ -1,35 +1,33 @@
-import { collectionData } from "../media/images/picture_collection.js";
-
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     const slideshowImage = document.getElementById("slideshowImage");
     const slideshowDescription = document.getElementById("slideshowDescription");
 
+    async function loadRandomPicture() {
+        try {
+            const res = await fetch("/slideshow");
+            if (!res.ok) throw new Error("Failed to fetch slideshow image");
+            const picture = await res.json();
 
-    // creates a random index from collection to pick a picture using math floor to round down
-    let currentIndex = Math.floor(Math.random() * collectionData.length);
+            // start with hidden image before loading
+            // slideshowImage.style.opacity = "0";
 
-    // null check
-    if(!collectionData || collectionData.length ===0) {
-        console.error("No images found in collectionData");
-        return;
+            // set image and fade in after it loads
+            slideshowImage.onload = () => {
+                slideshowImage.style.opacity = "1";
+            };
+
+            // set image and description
+            slideshowImage.src = picture.image;
+            slideshowDescription.textContent = picture.description_nl;
+
+        } catch (err) {
+            console.error("Error loading home slideshow:", err);
+        }
     }
 
-    // function to update image and description
-    function updateSlideshow() {
-        slideshowImage.src = collectionData[currentIndex].image;
-        slideshowDescription.textContent = collectionData[currentIndex].description_nl;
-        
-        // use opacity and css styling to create a ease in
-        slideshowImage.style.opacity = "1";
-    }
+    // load initial image
+    await loadRandomPicture();
 
-    // sets a random image
-    updateSlideshow();
-
-    // listener on picture click
-    slideshowImage.addEventListener("click", function () {
-        currentIndex = (currentIndex + 1) % collectionData.length; // cycle through images upon click
-        updateSlideshow();
-    });
+    // load a new image on click
+    slideshowImage.addEventListener("click", loadRandomPicture);
 });
-

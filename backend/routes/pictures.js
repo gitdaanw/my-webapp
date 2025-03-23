@@ -6,23 +6,8 @@ const router = express.Router();
 
 const DEFAULT_SORT = "date-asc"; // adds a backup sort default
 
-// function to load pictures from JSON file
-const getPictures = () => {
-    try {
-        const filePath = path.join(__dirname, '../data/picture_collection.json');
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-        if (!data.pictures || !Array.isArray(data.pictures)) {
-            console.error("Error: Expected 'pictures' to be an array but got:", typeof data.pictures);
-            return [];
-        }
-
-        return data.pictures; // ✅ Now returning the array instead of the whole object
-    } catch (error) {
-        console.error("Error loading picture_collection.json:", error);
-        return [];
-    }
-};
+// use helper function to load pictures from JSON file
+const { getPictures } = require("../utils/picture-data");
 
 router.get("/", (req, res) => {
     try {
