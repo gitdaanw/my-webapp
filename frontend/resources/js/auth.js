@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const loggedInUser = localStorage.getItem("loggedInUser");
     const body = document.body;
 
+    // TODO can be deleted
+
     // blocks display of page body if not logged in
     // body.style.display = "none";
 
