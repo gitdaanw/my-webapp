@@ -43,6 +43,29 @@ document.addEventListener("DOMContentLoaded", async () => {
         }   
     }
 
+    // endpoint to fetch picture count
+    async function getTotalPicturesForCategory() {
+        const category = categoryFilter.value;
+        
+        // endpoint to get the count of the collection
+        let url = `/pictures/count`;
+
+        // if category is not all we add it to the query parameter
+        if (category !== "Alles") {
+            url += `?category=${category}`;
+        }
+
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.total || 0; // return the count or a 0 if undefined to prevent errors
+        } catch (err) {
+            console.error("Error fetching picture count:", err);
+            return 0;
+        }
+    }
+
+    // function to populate categorydropdown using /pictures/categories endpoint
     async function populateCategoryDropdown() {
         try {
             const response = await fetch("/pictures/categories");
@@ -56,6 +79,17 @@ document.addEventListener("DOMContentLoaded", async () => {
             console.error("Error loading category list:", error);
         }
     };
+
+    // helper function to update pictures per page when changing filters
+    async function updatePicturesPerPage() {
+        const selectedValue = picturesPerPageFilter.value;
+    
+        if (selectedValue === "all") {
+            picturesPerPage = await getTotalPicturesForCategory();
+        } else {
+            picturesPerPage = parseInt(selectedValue, 10);
+        }
+    }
 
     // function to render the collected data
     function renderCollection(pictures, passedTotalPages) {
@@ -146,20 +180,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     // lightbox listener
     closeBtn.addEventListener("click", closeLightbox);
 
-    // sort and filter listener
+    // sortm, filter and pictures per page listener
     sortSelect.addEventListener("change", () => {
         currentPage = 1;
         fetchPictures();
     });
 
-    categoryFilter.addEventListener("change", () => {
+    categoryFilter.addEventListener("change", async () => {
+        await updatePicturesPerPage(); 
         currentPage = 1;
         fetchPictures();
     });
-
-    // pictures per page listener
-    picturesPerPageFilter.addEventListener("change", () => {
-        picturesPerPage = parseInt(picturesPerPageFilter.value, 10);
+    
+    picturesPerPageFilter.addEventListener("change", async () => {
+        await updatePicturesPerPage(); 
         currentPage = 1;
         fetchPictures();
     });

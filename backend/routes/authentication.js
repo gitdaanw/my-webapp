@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const users =[
-    { username: "testUser", password: "password1234", role: "admin"} // i need to change to db later if there is time left
+    { username: "test", password: "test", role: "admin"} // i need to change to db later if there is time left
 ];
 
 router.post("/login", (req, res) => {
