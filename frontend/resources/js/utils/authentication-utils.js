@@ -1,6 +1,6 @@
 export async function checkLogin() {
     try {
-        const res = await fetch("/auth/check", { credentials: "same-origin" });
+        const res = await fetch("/authentication/check", { credentials: "same-origin" });
         if (res.ok) {
             return await res.json();
         }

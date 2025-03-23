@@ -23,7 +23,7 @@ webServer.use((req, res, next) => {
 
 // load the API endpoints returning JSON data
 webServer.use("/pictures", require("./routes/pictures"));
-webServer.use("/auth", require("./routes/authentication"));
+webServer.use("/authentication", require("./routes/authentication"));
 webServer.use("/", require("./routes/home"));
 webServer.use("/add-picture", require ("./routes/logged_in_user/add-picture"));
 
