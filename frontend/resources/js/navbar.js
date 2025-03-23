@@ -9,7 +9,7 @@ async function updateNavbar() {
     let loggedInUser = null;
 
     try {
-        loggedInUser = await checkLogin(); // ✅ Always call this
+        loggedInUser = await checkLogin(); // used always, causes 401 when not logged in
     } catch (e) {
         console.error("Login check failed:", e);
     }

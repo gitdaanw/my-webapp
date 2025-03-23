@@ -24,6 +24,7 @@ webServer.use((req, res, next) => {
 // load the API endpoints returning JSON data
 webServer.use("/pictures", require("./routes/pictures"));
 webServer.use("/auth", require("./routes/authentication"));
+webServer.use("/", require("./routes/home"));
 
 // path.join uses _dirname(current script location) to base filepath structure to used OS
 // then serves correct .html file defined in frontend
