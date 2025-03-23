@@ -37,10 +37,16 @@ async function updateNavbar() {
     }
 }
 
-window.updateNavbar = updateNavbar;
-
+window.updateNavbar = updateNavbar; // window. makes this globally available
 
 function toggleMenu() {
     const menu = document.querySelector('.navbar-links');
     menu.classList.toggle('active');
 }
+
+window.attachNavbarHamburgerMenu = function () { // globally available through window.
+    const hamburger = document.querySelector(".navbar-hamburger-menu");
+    if (hamburger) {        // checks if hamburger menu is visible, if so adds listener
+        hamburger.addEventListener("click", toggleMenu);
+    }
+};

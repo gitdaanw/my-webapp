@@ -9,13 +9,18 @@ function loadComponent(id, file) {
     }
 
 async function loadHeaderAndFooter() {
-    await Promise.all([
+    await Promise.all([ // makes sure both are present
         loadComponent("header", "header.html"),
         loadComponent("footer", "footer.html")
     ]);
     
     if (typeof updateNavbar === "function") {
         await updateNavbar();
+    }
+
+    // adds listener for the hamburgermenu only if present
+    if (typeof attachNavbarHamburgerMenu === "function") {
+        attachNavbarHamburgerMenu();
     }
 }
 
