@@ -12,7 +12,7 @@ const { getPictures } = require("../utils/picture-data");
 router.get("/", (req, res) => {
     try {
         let pictures = getPictures(); // load the pictures 
-        // console.log("pictures before sorting: ", pictures);
+        // TODO console.log("pictures before sorting: ", pictures);
         const category = req.query.category;
         const sort = req.query.sort || DEFAULT_SORT;
         const page = req.query.page || 1; // 1 is the defautl incase no value is passed in URL
@@ -53,6 +53,23 @@ router.get("/categories", (req, res) => {
         res.json(categories);
     } catch (error) {
         console.error("Error getting categories", error );
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+router.get("/count", (req, res) => {
+    try {
+        let pictures = getPictures();
+
+        const category = req.query.category;
+        if (category && category !== "all") {
+            pictures = pictures.filter(p => p.category_nl.toLowerCase() === category.toLowerCase());
+        }
+
+        res.json({ total: pictures.length });
+    }
+    catch (error) {
+        console.error("Error in /pictures/count:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });

@@ -263,6 +263,18 @@
       "category_en": "City",
       "description_nl": "Foto genomen tijdens een fietstocht door de tuinen van de koninklijke tuinen bij het Palace Caserta",
       "description_en": "Picture taken during a biketour through the Royal Gardens of Caserta. "
+    },
+    {
+      "image": "resources/media/images/dummy_picture.jpg",
+      "date": "2025-03-03",
+      "country_nl": "Nederland",
+      "country_en": "Nederland",
+      "city": "Zoetermeer",
+      "category_nl": "Dieren",
+      "category_en": "Dieren",
+      "description_nl": "Een testbeschrijving voor een dummyfoto.",
+      "description_en": "Een testbeschrijving voor een dummyfoto.",
+      "id": 23
     }
   ]
 }
