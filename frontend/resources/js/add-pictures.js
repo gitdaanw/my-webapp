@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // attempt to sent pciture using POST
         try {
-            const response = await fetch("/add-picture", {
+            const response = await fetch("/add-pictures", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -3,17 +3,11 @@ const fs = require("fs");
 const path = require("path");
 const router = express.Router();
 
-// function to block users if not logged in
-function requireLogin(req, res, next) {
-    if (req.session && req.session.user) {
-        next(); // if logged in user can proceed
-    } else {
-        res.status(401).json({ message: "Unauthorized" });
-    }
-};
+// import authentication function
+const {requireLoginPage} = require("../../utils/authentication");
 
-// route post /add-picture
-router.post("/", requireLogin, (req, res) => {
+// route post /add-pictures, with requiredlogin
+router.post("/", requireLoginPage, (req, res) => {
     const newPicture = req.body; // collect data sent by frontend
 
     const filePath = path.join(__dirname, "../../data/picture_collection.json");

@@ -26,10 +26,13 @@
      <script type="module" src="/resources/js/navbar.js" defer></script>
 
      <!-- adding pictures -->
-     <script src="/resources/js/add-picture.js" type="module"></script>
+     <script src="/resources/js/add-pictures.js" type="module"></script>
 
      <!-- authentication script -->
-     <script src="/resources/js/auth.js" defer></script>
+     <script type="module">
+        import { guardProtectedPage } from "/resources/js/utils/authentication-utils.js";
+        guardProtectedPage(); // function to check if user is logged in
+    </script>
 </head>
 
 <body data-protected="true">
