@@ -408,6 +408,62 @@ a:not(.navbar-title-link):hover {
     cursor: not-allowed;
 }
 
+/* update picture specific */
+.update-picture-body h2 {
+    margin: 80px auto 0 auto;
+}
+
+.update-picture-body button {
+    padding: 8px 15px;
+    margin: 10px auto 0 auto;
+    background-color: #2196F3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.update-picture-body label {
+    font-weight: bold;
+    color: #0D47A1;
+    margin-bottom: 2px;
+}
+
+.update-picture-body form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 400px;
+    margin: 20px auto; 
+    padding: 40px;
+    background: #BBDEFB;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.update-picture-body input,
+.update-picture-body textarea {
+    width: 100%; /* Make them full width */
+    padding: 8px;
+    border: 1px solid #BBDEFB;
+    border-radius: 5px;
+    background-color: #F8F9FA;
+    color: #333;
+}
+
+.update-picture-body textarea {
+    height: 80px;
+    resize: none;
+}
+
+.update-picture-body input[readonly],
+.update-picture-body textarea[readonly] {
+    background-color: #f0f0f0;
+    color: #666;
+    cursor: not-allowed;
+}
+
 /* footer specific */
 
 footer {

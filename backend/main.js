@@ -12,6 +12,7 @@ const { requireLoginPage, requireLoginApi } = require("./utils/authentication");
 // session management, using temp secret, not for production purpose
 // resave prevents saving session if no changes are made
 // saveUnintialized prevents storing empty sessions
+// without database the session is lost upon reset of node.js server
 webServer.use(session({secret: "your-secret-key", resave: false, saveUninitialized: false}));
 
 // using a different filestructure, this allows the use of my files from frontend folder
@@ -31,12 +32,16 @@ webServer.get("/add-pictures", requireLoginPage, (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/add-pictures.html"));
 });
 
+webServer.get("/update-picture", requireLoginPage, (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/update-picture.html"));
+});
+
 // load the API endpoints returning JSON data
 webServer.use("/pictures", require("./routes/pictures"));
 webServer.use("/authentication", require("./routes/authentication"));
 webServer.use("/", require("./routes/home"));
 webServer.use("/add-pictures", requireLoginPage, require("./routes/logged_in_user/add-pictures"));
-
+webServer.use("/update-picture", requireLoginPage, require("./routes/logged_in_user/update-picture"));
 
 
 // path.join uses _dirname(current script location) to base filepath structure to used OS
