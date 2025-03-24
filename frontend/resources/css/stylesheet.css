@@ -411,6 +411,8 @@ a:not(.navbar-title-link):hover {
 /* update picture specific */
 .update-picture-body h2 {
     margin: 80px auto 0 auto;
+    max-width: 500px;
+    padding: 0 10px;
 }
 
 .update-picture-body button {
@@ -462,6 +464,64 @@ a:not(.navbar-title-link):hover {
     background-color: #f0f0f0;
     color: #666;
     cursor: not-allowed;
+}
+
+/* custom dropdown for update and delete picture */
+.custom-dropdown {
+    position: relative;
+    max-width: 90%;
+    margin: 10px auto;
+    text-align: left;
+    width: 100%;
+    padding: 0 10px;
+}
+
+.custom-dropdown button {
+    width: 100%;
+    padding: 10px;
+    background-color: field;
+    border: 2px solid #90CAF9;
+    border-radius: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    font-weight: bold;
+    color: #1565C0;
+}
+
+.custom-dropdown ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #90CAF9;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 999;
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+}
+
+.custom-dropdown li {
+    padding: 8px 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    color: #1565C0;
+    background-color: white;
+}
+
+.custom-dropdown li:hover {
+    background-color: #BBDEFB;
+}
+
+.hidden {
+    display: none;
 }
 
 /* footer specific */
@@ -604,7 +664,5 @@ footer a {
 
     .login-container {
         margin-top: 60px;
-    }
-
-    
+    }    
 }

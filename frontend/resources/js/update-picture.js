@@ -1,17 +1,77 @@
 document.addEventListener("DOMContentLoaded", async function () {
     const updatePictureForm = document.getElementById("updatePictureForm");
+    const dropdownButton = document.getElementById("dropdownButton");
+    const dropdownList = document.getElementById("dropdownList");
     const submitButton = document.querySelector("button[type='submit']");
+    let currentId = null; // used to track current selected picture
 
-    // trigger picture submission when submit button is clicked
+    // function to load selected picture data into the form fields
+    async function loadPictureIntoForm(id) {
+        try {
+            const res = await fetch(`/pictures/${id}`, { credentials: "same-origin" });
+            const picture = await res.json();
+            currentId = picture.id;
+            document.getElementById("date").value = picture.date || "";
+            document.getElementById("country_nl").value = picture.country_nl || "";
+            document.getElementById("city").value = picture.city || "";
+            document.getElementById("category_nl").value = picture.category_nl || "";
+            document.getElementById("description_nl").value = picture.description_nl || "";
+            document.getElementById("image").value = picture.image || "";
+        } catch (err) {
+            console.error("Fout bij ophalen van de afbeelding:", err);
+        }
+    }
+
+    // function to fetch pictures collection and load dropdown list
+async function loadPictureList() {
+    try {
+        const res = await fetch("pictures?category=all&perPage=all&sort=id_asc", { credentials: "same-origin" });
+        const data = await res.json();
+
+        data.pictures.forEach(picture => {
+            const fileName = picture.image.split("/").pop();
+            const li = document.createElement("li");
+            li.textContent = `${picture.id} – ${fileName}`;
+            li.title = fileName;
+
+            li.addEventListener("click", () => {
+                dropdownButton.textContent = `${picture.id} – ${fileName}`;
+                dropdownList.classList.add("hidden");
+                loadPictureIntoForm(picture.id);
+            });
+
+            dropdownList.appendChild(li);
+        });
+    } catch (err) {
+        console.error("Fout bij laden van de collectie:", err);
+    }
+}
+
+    // makes dropdown visible when clicked
+    dropdownButton.addEventListener("click", () => {
+        dropdownList.classList.toggle("hidden");
+    });
+    
+    // hide dropdown when clicked outside of component
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest("#pictureDropdown")) {
+            dropdownList.classList.add("hidden");
+        }
+    });
+
+    // submit updated picture to collection
     submitButton.addEventListener("click", function () {
         updatePictureForm.dispatchEvent(new Event("submit", { cancelable: true }));
     });
 
-    // handler for form submission
     updatePictureForm.addEventListener("submit", async function (event) {
-        event.preventDefault(); // prevents unwanted refresh of the page
+        event.preventDefault(); // prevent reloading of the page
 
-        const newPicture = {
+        // alert user if no picture is selected
+        if (!currentId) return alert("Selecteer eerst een foto.");
+
+        // gather form values
+        const updatedData = {
             image: document.getElementById("image").value,
             date: document.getElementById("date").value,
             country_nl: document.getElementById("country_nl").value,
@@ -23,30 +83,29 @@ document.addEventListener("DOMContentLoaded", async function () {
             description_en: document.getElementById("description_nl").value
         };
 
-        // attempt to sent pciture using PATCH
+        // send patch request to backend
         try {
-            console.log("trying to fetch add");
-            const response = await fetch("/update-picture/35", {
+            const response = await fetch(`/update-picture/${currentId}`, {
                 method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                credentials: "same-origin", // needed for session-cookie
-                body: JSON.stringify(newPicture)
+                headers: { "Content-Type": "application/json" },
+                credentials: "same-origin",
+                body: JSON.stringify(updatedData)
             });
 
             if (response.ok) {
-                alert("Foto sucesvol aangepast!");
+                alert("Foto succesvol aangepast!");
                 window.location.href = "pictures.html";
             } else {
-                alert("Toevoegen foto mislukt");
                 const errorText = await response.text();
+                alert("Aanpassing mislukt");
                 console.error("Server response:", response.status, errorText);
             }
         } catch (err) {
-            console.error("Error submitting picture: ", err);
-            alert("Er ging iets mis bij het verzenden van de data")
+            console.error("Error updating picture: ", err);
+            alert("Fout bij verzenden van de data");
         }
     });
 
+    // populate the dropdown when page loads
+    await loadPictureList();
 });
