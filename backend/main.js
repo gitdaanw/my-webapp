@@ -7,7 +7,11 @@ const PORT = 3000;
 // authentication
 const session = require("express-session");
 webServer.use(express.json());
+const { requireLoginPage, requireLoginApi } = require("./utils/authentication");
 
+// session management, using temp secret, not for production purpose
+// resave prevents saving session if no changes are made
+// saveUnintialized prevents storing empty sessions
 webServer.use(session({secret: "your-secret-key", resave: false, saveUninitialized: false}));
 
 // using a different filestructure, this allows the use of my files from frontend folder
@@ -21,11 +25,19 @@ webServer.use((req, res, next) => {
     next();
 });
 
+// ordering matters in this file to handle files correctly
+// handle serving protected .html files
+webServer.get("/add-pictures", requireLoginPage, (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/add-pictures.html"));
+});
+
 // load the API endpoints returning JSON data
 webServer.use("/pictures", require("./routes/pictures"));
 webServer.use("/authentication", require("./routes/authentication"));
 webServer.use("/", require("./routes/home"));
-webServer.use("/add-picture", require ("./routes/logged_in_user/add-picture"));
+webServer.use("/add-pictures", requireLoginPage, require("./routes/logged_in_user/add-pictures"));
+
+
 
 // path.join uses _dirname(current script location) to base filepath structure to used OS
 // then serves correct .html file defined in frontend
