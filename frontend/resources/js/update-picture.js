@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", async function () {
-    const addPictureForm = document.getElementById("addPictureForm");
+    const updatePictureForm = document.getElementById("updatePictureForm");
     const submitButton = document.querySelector("button[type='submit']");
 
     // trigger picture submission when submit button is clicked
     submitButton.addEventListener("click", function () {
-        addPictureForm.dispatchEvent(new Event("submit", { cancelable: true }));
+        updatePictureForm.dispatchEvent(new Event("submit", { cancelable: true }));
     });
 
     // handler for form submission
-    addPictureForm.addEventListener("submit", async function (event) {
+    updatePictureForm.addEventListener("submit", async function (event) {
         event.preventDefault(); // prevents unwanted refresh of the page
 
         const newPicture = {
@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", async function () {
             description_en: document.getElementById("description_nl").value
         };
 
-        // attempt to sent pciture using POST
+        // attempt to sent pciture using PATCH
         try {
             console.log("trying to fetch add");
-            const response = await fetch("/add-pictures", {
-                method: "POST",
+            const response = await fetch("/update-picture/35", {
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
 
             if (response.ok) {
-                alert("Foto sucesvol toegevoegd!");
+                alert("Foto sucesvol aangepast!");
                 window.location.href = "pictures.html";
             } else {
                 alert("Toevoegen foto mislukt");

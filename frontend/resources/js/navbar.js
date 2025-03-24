@@ -20,6 +20,7 @@ async function updateNavbar() {
     if (loggedInUser) {
         authLink = `
             <a href="/add-pictures.html">Foto Toevoegen</a>
+            <a href="/update-picture.html">Foto Aanpassen</a>
             <a href="#" id="logoutLink">Uitloggen</a>
         `;
     } else {
