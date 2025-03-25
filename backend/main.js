@@ -6,6 +6,7 @@ const PORT = 3000;
 
 const sequelize = require("./sequelize");
 const Picture = require("./models/Picture");
+const User = require("./models/User");
 
 // sync the model when starting server
 sequelize.sync().then(() => {

@@ -26,7 +26,7 @@
      <script type="module" src="/resources/js/navbar.js" defer></script>
 
      <!-- login script -->
-     <script src="/resources/js/login.js" defer></script>
+     <script type="module" src="/resources/js/login.js" defer></script>
 </head>
 
 <body>
@@ -39,6 +39,10 @@
             <input type="text" id="username" placeholder="Gebruikersnaam" required>
             <input type="password" id="password" placeholder="Wachtwoord" required>
             <button type="submit">Inloggen</button>
+
+            <p>Nog geen account? <a href="register.html">Registreer hier</a>.</p>
+
+
         </form>
         <p id="errorMessage" class="hidden">Invalid username or password!</p>
     </section>
