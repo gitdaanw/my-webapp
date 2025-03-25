@@ -41,12 +41,12 @@
       "image": "resources/media/images/20170404_1200_barcelone_overview_parc_guell.jpg",
       "date": "2017-04-04",
       "country_nl": "Spanje",
-      "country_en": "Spain",
+      "country_en": "Spanje",
       "city": "Barcelona",
       "category_nl": "Stad",
-      "category_en": "City",
+      "category_en": "Stad",
       "description_nl": "Foto van Barcelona, genomen vanuit Parc Güell. Het park is ontworpen door de Spaanse ontwerper en architect Antoni Gaudi",
-      "description_en": "Picture of Barcelone, taken from Parc Güell. This park has been designed by Spanish designer and architect Antoni Gaudi."
+      "description_en": "Foto van Barcelona, genomen vanuit Parc Güell. Het park is ontworpen door de Spaanse ontwerper en architect Antoni Gaudi"
     },
     {
       "id": 5,
@@ -381,20 +381,44 @@
       "category_nl": "Dieren",
       "category_en": "Dieren",
       "description_nl": "Doe eens wat leuks",
-      "description_en": "Doe eens wat leuks",
+      "description_en": "Een testbeschrijving voor een dummyfoto.",
       "id": 32
     },
     {
       "image": "resources/media/images/dummy_picture.jpg",
-      "date": "2025-03-03",
-      "country_nl": "Nederland",
-      "country_en": "Nederland",
-      "city": "Zoetermeer",
-      "category_nl": "Dieren",
-      "category_en": "Dieren",
-      "description_nl": "Een testbeschrijving voor een dummyfoto.",
-      "description_en": "Een testbeschrijving voor een dummyfoto.",
+      "date": "2025-03-10",
+      "country_nl": "Oostenrijk",
+      "country_en": "Oostenrijk",
+      "city": "Lech",
+      "category_nl": "dieren",
+      "category_en": "dieren",
+      "description_nl": "Een foto van mijn hond, Zero, in de Oostenrijkse sneeuw.123123",
+      "description_en": "Een foto van mijn hond, Zero, in de Oostenrijkse sneeuw.123123",
       "id": 33
+    },
+    {
+      "image": "resources/media/images/dummy_picture.jpg",
+      "date": "2025-03-10",
+      "country_nl": "Oostenrijk",
+      "country_en": "Austria",
+      "city": "Lech",
+      "category_nl": "dieren",
+      "category_en": "animals",
+      "description_nl": "Een foto van mijn hond, Zero, in de Oostenrijkse sneeuw.",
+      "description_en": "A picture of my dog, Zero, in the Austrian snow.",
+      "id": 34
+    },
+    {
+      "image": "resources/media/images/dummy_picture.jpg",
+      "date": "2025-03-10",
+      "country_nl": "Oostenrijk",
+      "country_en": "Austria",
+      "city": "Lech",
+      "category_nl": "dieren",
+      "category_en": "animals",
+      "description_nl": "Een foto van mijn hond, Zero, in de Oostenrijkse sneeuw.",
+      "description_en": "A picture of my dog, Zero, in the Austrian snow.",
+      "id": 35
     }
   ]
 }
