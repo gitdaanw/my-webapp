@@ -1,0 +1,68 @@
+name: Deploy React App to Azure
+ 
+# Deze workflow wordt alleen uitgevoerd bij een push naar de `production` branch, dit kan ook via een PR gebeuren!
+on:
+  push:
+    branches:
+      - production
+ 
+jobs:
+  # Hier begint de job voor het frontend
+  build-and-deploy-frontend:
+    name: Build & Deploy frontend
+    runs-on: ubuntu-24.04
+ 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+ 
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: Frontend/package-lock.json
+ 
+      - name: Install dependencies
+        working-directory: Frontend
+        run: npm ci
+ 
+      - name: Build React app
+        working-directory: Frontend
+        run: npm run build
+ 
+      - name: Deploy to Azure Web App
+        uses: azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_DEPLOYMENT_TOKEN }}
+          action: upload
+          app_location: Frontend/build/client
+ 
+  # Hier begint de job voor het backend
+  build-and-deploy-backend:
+    name: Build & Deploy backend
+    runs-on: ubuntu-24.04
+ 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+ 
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: ./Backend/package-lock.json
+ 
+      - name: Install dependencies
+        working-directory: Backend
+        run: npm ci
+ 
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: azureWebdevDemoBackend # Pas mij aan naar hoe je mij in Azure genoemd hebt
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          package: Backend
+ 
+ 
