@@ -41,8 +41,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     // function to fetch pictures collection and load dropdown list
     async function loadPictureList() {
         try {
-            const res = await fetch("api/pictures?category=all&perPage=all&sort=id_asc", { credentials: "same-origin" });
+            const res = await fetch("api/pictures?category=all&perPage=all&sort=id-asc", { credentials: "same-origin" }); // sorting on id
             const data = await res.json();
+
+            // prevent crash if wrong format is used
+            if (!Array.isArray(data.pictures)) {
+                console.warn("No picture data received");
+                return;
+              }
 
             data.pictures.forEach(picture => {
                 const fileName = picture.image.split("/").pop();
