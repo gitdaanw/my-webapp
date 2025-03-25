@@ -1,5 +1,8 @@
 import { capitalize } from "./utils/string-utils.js";
 
+// import base URL for deployed functionality and local testing
+import { API_BASE_URL } from "./utils/api-base.js";
+
 document.addEventListener("DOMContentLoaded", async function () {
     const addPictureForm = document.getElementById("addPictureForm");
     const submitButton = document.querySelector("button[type='submit']");
@@ -39,7 +42,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // attempt to sent pciture using POST
         try {
-            const response = await fetch("api/add-pictures", {
+            const response = await fetch(`${API_BASE_URL}/add-pictures`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

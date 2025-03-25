@@ -1,6 +1,7 @@
 name: Deploy React App to Azure
  
 # Deze workflow wordt alleen uitgevoerd bij een push naar de `production` branch, dit kan ook via een PR gebeuren!
+#  This workflow is only processed with a push to production branch. Can also be done through a PR
 on:
   push:
     branches:
@@ -16,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
  
-      - name: Set up NodeJS
+      - name: Set up NodeJS  
         uses: actions/setup-node@v4
         with:
           node-version: 22
