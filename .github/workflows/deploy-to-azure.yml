@@ -1,69 +1,66 @@
-name: Deploy React App to Azure
- 
-# Deze workflow wordt alleen uitgevoerd bij een push naar de `production` branch, dit kan ook via een PR gebeuren!
-#  This workflow is only processed with a push to production branch. Can also be done through a PR
+name: Deploy Web App to Azure
+
+# Trigger this workflow only on push to the production branch
 on:
   push:
     branches:
       - production
- 
+
 jobs:
-  # Hier begint de job voor het frontend
+  # FRONTEND DEPLOYMENT JOB
   build-and-deploy-frontend:
     name: Build & Deploy frontend
     runs-on: ubuntu-24.04
- 
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
- 
-      - name: Set up NodeJS  
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
-          cache-dependency-path: Frontend/package-lock.json
- 
+          cache-dependency-path: frontend/package-lock.json
+
       - name: Install dependencies
-        working-directory: Frontend
+        working-directory: frontend
         run: npm ci
- 
-      - name: Build React app
-        working-directory: Frontend
+
+      - name: Build frontend app
+        working-directory: frontend
         run: npm run build
- 
-      - name: Deploy to Azure Web App
+
+      - name: Deploy to Azure Static Web App
         uses: azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_DEPLOYMENT_TOKEN }}
           action: upload
-          app_location: Frontend/build/client
- 
-  # Hier begint de job voor het backend
+          app_location: frontend
+
+  # BACKEND DEPLOYMENT JOB
   build-and-deploy-backend:
     name: Build & Deploy backend
     runs-on: ubuntu-24.04
- 
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
- 
-      - name: Set up NodeJS
+
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
-          cache-dependency-path: ./Backend/package-lock.json
- 
-      - name: Install dependencies
-        working-directory: Backend
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install backend dependencies
+        working-directory: backend
         run: npm ci
- 
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: WebapplicationsBackendDaan # Pas mij aan naar hoe je mij in Azure genoemd hebt
+          app-name: webdevelopmentWebapp # 🔁 Replace with your Azure App Service name
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: Backend
- 
- 
+          package: backend
