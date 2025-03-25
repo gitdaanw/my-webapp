@@ -30,11 +30,11 @@ node_modules/
 frontend/build/
 
 # Compiled DB
-backend/backend/data/*.sqlite
-backend/backend/data/backup/
+backend/data/*.sqlite
+backend/data/backup/
 
 # Scripts not needed after import
-backend/backend/data/backup/import-json-to-db.js
+backend/data/backup/import-json-to-db.js
 
 # System files
 .DS_Store
