@@ -8,7 +8,7 @@ const DEFAULT_SORT = "date-asc"; // adds a backup sort default
 const { getPictures } = require("../utils/picture-data");
 const { requireLoginPage } = require("../utils/authentication");
 
-// GET route to get all pictures
+// GET route to get pictures with default sorting, category selection and pictures per page
 router.get("/", (req, res) => {
     try {
         let pictures = getPictures(); // load the pictures 
