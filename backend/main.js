@@ -36,13 +36,17 @@ webServer.get("/update-picture", requireLoginPage, (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/update-picture.html"));
 });
 
+webServer.get("/update-picture", requireLoginPage, (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/update-picture.html"));
+});
+
 // load the API endpoints returning JSON data
 webServer.use("/pictures", require("./routes/pictures"));
 webServer.use("/authentication", require("./routes/authentication"));
 webServer.use("/", require("./routes/home"));
 webServer.use("/add-pictures", requireLoginPage, require("./routes/logged_in_user/add-pictures"));
 webServer.use("/update-picture", requireLoginPage, require("./routes/logged_in_user/update-picture"));
-
+webServer.use("/delete-picture", requireLoginPage, require("./routes/logged_in_user/delete-picture"));
 
 // path.join uses _dirname(current script location) to base filepath structure to used OS
 // then serves correct .html file defined in frontend
