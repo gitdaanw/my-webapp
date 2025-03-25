@@ -1,41 +1,44 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
 const router = express.Router();
-
-// import authentication function
-const {requireLoginPage} = require("../../utils/authentication");
+const { requireLoginPage } = require("../../utils/authentication");
+const Picture = require("../../models/Picture");
 
 // route post /add-pictures, with requiredlogin
-router.post("/", requireLoginPage, (req, res) => {
-    const newPicture = req.body; // collect data sent by frontend
-
-    const filePath = path.join(__dirname, "../../data/picture_collection.json");
-    console.log("filepath is located in ", filePath);
-    
+router.post("/", requireLoginPage, async (req, res) => {
     try {
-        const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
-        console.log(data);
+        const {
+            image,
+            date,
+            country_nl,
+            country_en,
+            city,
+            category_nl,
+            category_en,
+            description_nl,
+            description_en
+        } = req.body;
 
-        // check if data is of type array to prevent errors
-        if (!data.pictures || !Array.isArray(data.pictures)) {
-            return res.status(500).json({message: "invalid data structure"});
+        // Validate required fields (you can customize this)
+        if (!image || !date || !category_nl || !description_nl) {
+            return res.status(400).json({ message: "Missing required fields." });
         }
 
-        // add id to the new picture
-        const nextId = Math.max(...data.pictures.map(p => p.id || 0)) + 1;
-        newPicture.id = nextId;
+        const newPicture = await Picture.create({
+            image,
+            date,
+            country_nl,
+            country_en,
+            city,
+            category_nl,
+            category_en,
+            description_nl,
+            description_en
+        });
 
-        // add picture to the array
-        data.pictures.push(newPicture);
-
-        // save updated data back to the JSON file
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
-
-        res.status(201).json({message: "Picture added", id: nextId});
+        res.status(201).json({ message: "Picture added", id: newPicture.id });
     } catch (err) {
-        console.error("Error writing to JSON", err);
-        res.status(500).json({message: "Internal server error"});
+        console.error("Error creating picture:", err);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });
 

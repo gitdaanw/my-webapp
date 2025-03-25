@@ -93,6 +93,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // function to render the collected data
     function renderCollection(pictures, passedTotalPages) {
+        // check if there is any pictures and of type array
+        if (!Array.isArray(pictures)) {
+            console.warn("No pictures received");
+            pictureContainer.innerHTML = "<p>Geen foto's gevonden.</p>";
+            return;
+        }
+        
         totalPages = passedTotalPages;
         pictureContainer.innerHTML = "";
 

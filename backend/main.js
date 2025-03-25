@@ -4,6 +4,14 @@ const path = require("path"); // import path module, this is used to work with f
 const webServer = express(); // create new instance of express
 const PORT = 3000; 
 
+const sequelize = require("./sequelize");
+const Picture = require("./models/Picture");
+
+// sync the model when starting server
+sequelize.sync().then(() => {
+    console.log("Database synced");
+});
+
 // authentication
 const session = require("express-session");
 webServer.use(express.json());
