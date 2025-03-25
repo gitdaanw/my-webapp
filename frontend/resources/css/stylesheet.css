@@ -409,13 +409,13 @@ a:not(.navbar-title-link):hover {
 }
 
 /* update picture specific */
-.update-picture-body h2 {
+.modify-picture-body h2 {
     margin: 80px auto 0 auto;
     max-width: 500px;
     padding: 0 10px;
 }
 
-.update-picture-body button {
+.modify-picture-body button {
     padding: 8px 15px;
     margin: 10px auto 0 auto;
     background-color: #2196F3;
@@ -425,13 +425,13 @@ a:not(.navbar-title-link):hover {
     font-weight: bold;
 }
 
-.update-picture-body label {
+.modify-picture-body label {
     font-weight: bold;
     color: #0D47A1;
     margin-bottom: 2px;
 }
 
-.update-picture-body form {
+.modify-picture-body form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -444,8 +444,8 @@ a:not(.navbar-title-link):hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.update-picture-body input,
-.update-picture-body textarea {
+.modify-picture-body input,
+.modify-picture-body textarea {
     width: 100%; /* Make them full width */
     padding: 8px;
     border: 1px solid #BBDEFB;
@@ -454,16 +454,36 @@ a:not(.navbar-title-link):hover {
     color: #333;
 }
 
-.update-picture-body textarea {
+.modify-picture-body textarea {
     height: 80px;
     resize: none;
 }
 
-.update-picture-body input[readonly],
-.update-picture-body textarea[readonly] {
+.modify-picture-body input[readonly],
+.modify-picture-body textarea[readonly] {
     background-color: #f0f0f0;
     color: #666;
     cursor: not-allowed;
+}
+
+.modify-picture-body #thumbnailContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.modify-picture-body #thumbnailPreview {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    display: none; /* will be shown by JS when image is loaded */
+}
+
+/* add a click icon hovering the thumbnail */
+.modify-picture-body #thumbnailPreview {
+    cursor: pointer;
 }
 
 /* custom dropdown for update and delete picture */

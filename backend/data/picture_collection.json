@@ -395,30 +395,6 @@
       "description_nl": "Een testbeschrijving voor een dummyfoto.",
       "description_en": "Een testbeschrijving voor een dummyfoto.",
       "id": 33
-    },
-    {
-      "image": "resources/media/images/dummy_picture.jpg",
-      "date": "2025-03-03",
-      "country_nl": "Nederland",
-      "country_en": "Nederland",
-      "city": "Zoetermeer",
-      "category_nl": "Dieren",
-      "category_en": "Dieren",
-      "description_nl": "Een testbeschrijving voor een dummyfoto.",
-      "description_en": "Een testbeschrijving voor een dummyfoto.",
-      "id": 34
-    },
-    {
-      "image": "resources/media/images/dummy_picture.jpg",
-      "date": "2025-03-03",
-      "country_nl": "Nederland",
-      "country_en": "Nederland",
-      "city": "Zoetermeer",
-      "category_nl": "Dieren",
-      "category_en": "Dieren",
-      "description_nl": "weer een nieuwe",
-      "description_en": "weer een nieuwe",
-      "id": 35
     }
   ]
 }
