@@ -1,3 +1,5 @@
+import { capitalize } from "./utils/string-utils.js";
+
 document.addEventListener("DOMContentLoaded", async function () {
     const addPictureForm = document.getElementById("addPictureForm");
     const submitButton = document.querySelector("button[type='submit']");
@@ -11,21 +13,32 @@ document.addEventListener("DOMContentLoaded", async function () {
     addPictureForm.addEventListener("submit", async function (event) {
         event.preventDefault(); // prevents unwanted refresh of the page
 
+        // collect values from the form
+        const image = document.getElementById("image").value;
+        const date = document.getElementById("date").value;
+        const country_nl = document.getElementById("country_nl").value;
+        const country_en = country_nl; // not handles separately as only for demo
+        const city = document.getElementById("city").value;
+        const category_nl = capitalize(document.getElementById("category_nl").value);
+        const category_en = category_nl; // not handles separately as only for demo
+        const description_nl = document.getElementById("description_nl").value;
+        const description_en = description_nl; // not handles separately as only for demo
+
+        // create new picture object
         const newPicture = {
-            image: document.getElementById("image").value,
-            date: document.getElementById("date").value,
-            country_nl: document.getElementById("country_nl").value,
-            country_en: document.getElementById("country_nl").value,
-            city: document.getElementById("city").value,
-            category_nl: document.getElementById("category_nl").value,
-            category_en: document.getElementById("category_nl").value,
-            description_nl: document.getElementById("description_nl").value,
-            description_en: document.getElementById("description_nl").value
+            image,
+            date,
+            country_nl,
+            country_en,
+            city,
+            category_nl,
+            category_en,
+            description_nl,
+            description_en
         };
 
         // attempt to sent pciture using POST
         try {
-            console.log("trying to fetch add");
             const response = await fetch("api/add-pictures", {
                 method: "POST",
                 headers: {
@@ -39,14 +52,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 alert("Foto sucesvol toegevoegd!");
                 window.location.href = "pictures.html";
             } else {
-                alert("Toevoegen foto mislukt");
                 const errorText = await response.text();
                 console.error("Server response:", response.status, errorText);
+                alert("Toevoegen foto mislukt");
             }
         } catch (err) {
             console.error("Error submitting picture: ", err);
             alert("Er ging iets mis bij het verzenden van de data")
         }
     });
-
 });

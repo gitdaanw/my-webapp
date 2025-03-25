@@ -4,6 +4,7 @@ const { requireLoginPage } = require("../../utils/authentication");
 const Picture = require("../../models/Picture");
 
 // route post /add-pictures, with requiredlogin
+// demo usage only
 router.post("/", requireLoginPage, async (req, res) => {
     try {
         const {
@@ -18,7 +19,7 @@ router.post("/", requireLoginPage, async (req, res) => {
             description_en
         } = req.body;
 
-        // Validate required fields (you can customize this)
+        // validate required fields, needs extention when used in live
         if (!image || !date || !category_nl || !description_nl) {
             return res.status(400).json({ message: "Missing required fields." });
         }
