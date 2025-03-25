@@ -1,10 +1,13 @@
+// import base URL for deployed functionality and local testing
+import { API_BASE_URL } from "./utils/api-base.js";
+
 document.addEventListener("DOMContentLoaded", async function () {
     const slideshowImage = document.getElementById("slideshowImage");
     const slideshowDescription = document.getElementById("slideshowDescription");
 
     async function loadRandomPicture() {
         try {
-            const res = await fetch("/api/slideshow");
+            const res = await fetch(`${API_BASE_URL}/slideshow`);
             if (!res.ok) throw new Error("Failed to fetch slideshow image");
             const picture = await res.json();
 

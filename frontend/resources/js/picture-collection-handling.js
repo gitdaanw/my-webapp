@@ -1,6 +1,9 @@
 // default sorting value
 const DEFAULT_SORT = "date-asc";
 
+// import base URL for deployed functionality and local testing
+import { API_BASE_URL } from "./utils/api-base.js";
+
 document.addEventListener("DOMContentLoaded", async () => {
     
     const pictureContainer = document.getElementById("gallery");
@@ -30,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const category = categoryFilter.value;
         const sort = sortSelect.value;
         
-        let url = `api/pictures?page=${currentPage}&perPage=${picturesPerPage}`;
+        let url = `${API_BASE_URL}/pictures?page=${currentPage}&perPage=${picturesPerPage}`;
         if (category !== "Alles") url += `&category=${category}`;
         if (sort) url += `&sort=${sort}`;
 
@@ -48,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const category = categoryFilter.value;
         
         // endpoint to get the count of the collection
-        let url = `api/pictures/count`;
+        let url = `${API_BASE_URL}/pictures/count`;
 
         // if category is not all we add it to the query parameter
         if (category !== "Alles") {
@@ -68,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // function to populate categorydropdown using /pictures/categories endpoint
     async function populateCategoryDropdown() {
         try {
-            const response = await fetch("api/pictures/categories");
+            const response = await fetch(`${API_BASE_URL}/pictures/categories`);
             const categories = await response.json();
             const options = ["Alles", ...categories];
 

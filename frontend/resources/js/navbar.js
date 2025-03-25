@@ -1,4 +1,6 @@
 import { checkLogin } from "./utils/authentication-utils.js";
+// import base URL for deployed functionality and local testing
+import { API_BASE_URL } from "./utils/api-base.js";
 
 async function updateNavbar() {
     const navbarLinksContainer = document.querySelector(".navbar-links");
@@ -32,7 +34,7 @@ async function updateNavbar() {
 
     if (loggedInUser) {
         document.getElementById("logoutLink").addEventListener("click", async function () {
-            await fetch("api/authentication/logout", { method: "POST" });
+            await fetch(`${API_BASE_URL}/authentication/logout`, { method: "POST" });
             alert("Uitloggen succesvol!");
             window.location.href = "/";
         });

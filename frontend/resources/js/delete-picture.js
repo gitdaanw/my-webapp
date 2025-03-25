@@ -1,3 +1,6 @@
+// import base URL for deployed functionality and local testing
+import { API_BASE_URL } from "./utils/api-base.js";
+
 document.addEventListener("DOMContentLoaded", async function () {
     const deletePictureForm = document.getElementById("deletePictureForm");
     const dropdownButton = document.getElementById("dropdownButton");
@@ -15,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // load details for selected picture into form
     async function loadPictureIntoForm(id) {
         try {
-            const res = await fetch(`api/pictures/${id}`, { credentials: "same-origin" });
+            const res = await fetch(`${API_BASE_URL}/pictures/${id}`, { credentials: "same-origin" });
             const picture = await res.json();
             currentId = picture.id;
 
@@ -42,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // function to load pictures into dropdownlist
     async function loadPictureList() {
         try {
-            const res = await fetch("api/pictures?category=all&perPage=all&sort=id-asc", {
+            const res = await fetch(`${API_BASE_URL}/pictures?category=all&perPage=all&sort=id-asc`, {
                 credentials: "same-origin"
             });
             const data = await res.json();
@@ -105,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!confirmDelete) return;
 
         try {
-            const response = await fetch(`api/delete-picture/${currentId}`, {
+            const response = await fetch(`${API_BASE_URL}/delete-picture/${currentId}`, {
                 method: "DELETE",
                 credentials: "same-origin"
             });
