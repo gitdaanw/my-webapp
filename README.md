@@ -15,3 +15,10 @@ node backend/scripts/seed-pictures.js
 node backend/main.js
 
 After this is done you can use the application locally, you will have to register and login for the full functionality. 
+
+# this website is also published using Azure
+Frontend: 
+https://agreeable-mud-02e923310.6.azurestaticapps.net
+
+Backend:
+https://webdevelopmentwebappbackend-e6gvg5eja3c7hueg.westeurope-01.azurewebsites.net  
