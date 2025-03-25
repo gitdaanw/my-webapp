@@ -24,7 +24,7 @@ hs_err_pid*
 replay_pid*
 
 # Node modules
-node_modules/
+backend/node_modules/
 
 # Build output (frontend)
 frontend/build/
