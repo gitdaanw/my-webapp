@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const category = categoryFilter.value;
         const sort = sortSelect.value;
         
-        let url = `/pictures?page=${currentPage}&perPage=${picturesPerPage}`;
+        let url = `api/pictures?page=${currentPage}&perPage=${picturesPerPage}`;
         if (category !== "Alles") url += `&category=${category}`;
         if (sort) url += `&sort=${sort}`;
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const category = categoryFilter.value;
         
         // endpoint to get the count of the collection
-        let url = `/pictures/count`;
+        let url = `api/pictures/count`;
 
         // if category is not all we add it to the query parameter
         if (category !== "Alles") {
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // function to populate categorydropdown using /pictures/categories endpoint
     async function populateCategoryDropdown() {
         try {
-            const response = await fetch("/pictures/categories");
+            const response = await fetch("api/pictures/categories");
             const categories = await response.json();
             const options = ["Alles", ...categories];
 

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     async function loadRandomPicture() {
         try {
-            const res = await fetch("/slideshow");
+            const res = await fetch("/api/slideshow");
             if (!res.ok) throw new Error("Failed to fetch slideshow image");
             const picture = await res.json();
 

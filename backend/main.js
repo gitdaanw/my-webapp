@@ -15,9 +15,6 @@ const { requireLoginPage, requireLoginApi } = require("./utils/authentication");
 // without database the session is lost upon reset of node.js server
 webServer.use(session({secret: "your-secret-key", resave: false, saveUninitialized: false}));
 
-// using a different filestructure, this allows the use of my files from frontend folder
-webServer.use(express.static(path.join(__dirname, "../frontend")));
-
 // remove .html from URLs
 webServer.use((req, res, next) => {
     if (req.path.endsWith(".html")) {
@@ -25,6 +22,9 @@ webServer.use((req, res, next) => {
     }
     next();
 });
+
+// using a different filestructure, this allows the use of my files from frontend folder
+webServer.use(express.static(path.join(__dirname, "../frontend")));
 
 // ordering matters in this file to handle files correctly
 // handle serving protected .html files
@@ -40,13 +40,13 @@ webServer.get("/update-picture", requireLoginPage, (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/update-picture.html"));
 });
 
-// load the API endpoints returning JSON data
-webServer.use("/pictures", require("./routes/pictures"));
-webServer.use("/authentication", require("./routes/authentication"));
-webServer.use("/", require("./routes/home"));
-webServer.use("/add-pictures", requireLoginPage, require("./routes/logged_in_user/add-pictures"));
-webServer.use("/update-picture", requireLoginPage, require("./routes/logged_in_user/update-picture"));
-webServer.use("/delete-picture", requireLoginPage, require("./routes/logged_in_user/delete-picture"));
+// handle api requests
+webServer.use("/api/pictures", require("./routes/pictures"));
+webServer.use("/api/authentication", require("./routes/authentication"));
+webServer.use("/api/", require("./routes/home"));
+webServer.use("/api/add-pictures", requireLoginPage, require("./routes/logged_in_user/add-pictures"));
+webServer.use("/api/update-picture", requireLoginPage, require("./routes/logged_in_user/update-picture"));
+webServer.use("/api/delete-picture", requireLoginPage, require("./routes/logged_in_user/delete-picture"));
 
 // path.join uses _dirname(current script location) to base filepath structure to used OS
 // then serves correct .html file defined in frontend
