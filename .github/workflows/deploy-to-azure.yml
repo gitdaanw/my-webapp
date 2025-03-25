@@ -48,4 +48,4 @@ jobs:
         with:
           app-name: azureWebdevDemoBackend
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          package: backend
+          package: ./backend
