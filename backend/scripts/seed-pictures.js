@@ -1,5 +1,7 @@
 /* This script is meant to seed the db with 
-data connected to the pictures found under frontend/media/images */
+data connected to the pictures found under frontend/media/images
+To run you can run:
+node backend/scripts/seed-pictures.js */
 
 const fs = require("fs");
 const path = require("path");
@@ -10,7 +12,7 @@ async function seedPictures() {
   try {
     await sequelize.sync(); // Ensures DB and tables are created
 
-    const filePath = path.join(__dirname, "../data/backup/picture_collection.json");
+    const filePath = path.join(__dirname, "../data/backup/backup - picture_collection.json");
     const rawData = fs.readFileSync(filePath, "utf8");
     const jsonData = JSON.parse(rawData);
 
