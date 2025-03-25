@@ -13,3 +13,5 @@ The repo comes without a database, you will get your own upon running the code. 
 npm install
 node backend/scripts/seed-pictures.js
 node backend/main.js
+
+After this is done you can use the application locally, you will have to register and login for the full functionality. 
