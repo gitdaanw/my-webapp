@@ -1,55 +1,46 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
 const router = express.Router();
-
-// import authentication function
-const {requireLoginPage} = require("../../utils/authentication");
+const { requireLoginPage } = require("../../utils/authentication");
+const Picture = require("../../models/Picture");
 
 // route PATCH /pictures/id, requirelogin, update existing picture
-router.patch("/:id", requireLoginPage, (req, res) => {
+router.patch("/:id", requireLoginPage, async (req, res) => {
     // define the filepath to collection
-    const filePath = path.join(__dirname, "../../data/picture_collection.json");
+    const pictureId = Number(req.params.id);
 
-    try {
-        const data = JSON.parse(fs.readFileSync(filePath, "utf8"));
-        const idToPatch = Number(req.params.id); // get the id
-        const index = data.pictures.findIndex(p => p.id === idToPatch); // find the index of the id
+  try {
+    const picture = await Picture.findByPk(pictureId);
 
-        // if the index cannot be found, throw an error
-        if (index === -1) {
-            return res.status(404).json({ message: "Picture not found" });
-        }
-
-        // list with fields that are allowed to be updated
-        // as for demo this is blocked in frontend so only description_nl can be updated
-        const allowedFields = [
-            "date",
-            "country_nl", "country_en",
-            "city",
-            "category_nl", "category_en",
-            "description_nl", "description_en",
-            "image"
-        ];
-
-        // update the allowed fields
-        for (const key of allowedFields) {
-            if (key in req.body) {
-                data.pictures[index][key] = req.body[key];
-            }
-        }
-
-        // write updated data back to the collection
-        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), "utf8");
-
-        // send response with success
-        res.status(201).json({message: "Picture updated"});
-
-        // handle errors related to read and write
-    } catch (error) {
-        console.error("Error updating picture:", error);
-        res.status(500).json({ message: "Internal server error" });
+    if (!picture) {
+      return res.status(404).json({ message: "Picture not found" });
     }
+
+    // only allow specific fields to be updated
+    const allowedFields = [
+      "date",
+      "country_nl", "country_en",
+      "city",
+      "category_nl", "category_en",
+      "description_nl", "description_en",
+      "image"
+    ];
+
+    // filter only allowed fields from the request body
+    const updates = {};
+    for (const key of allowedFields) {
+      if (key in req.body) {
+        updates[key] = req.body[key];
+      }
+    }
+
+    // apply the update
+    await picture.update(updates);
+
+    res.status(200).json({ message: "Picture updated" });
+  } catch (error) {
+    console.error("Error updating picture:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 });
 
 module.exports = router;
