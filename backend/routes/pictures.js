@@ -1,9 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const path = require("path");
-
 const router = express.Router();
-
 const DEFAULT_SORT = "date-asc"; // adds a backup sort default
 
 // use helper function to load pictures from JSON file

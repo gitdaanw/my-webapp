@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function loadPictureIntoForm(id) {
         try {
             // fetch picture using id
-            const res = await fetch(`/pictures/${id}`, { credentials: "same-origin" });
+            const res = await fetch(`api/pictures/${id}`, { credentials: "same-origin" });
             const picture = await res.json();
             currentId = picture.id;
 
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // function to fetch pictures collection and load dropdown list
     async function loadPictureList() {
         try {
-            const res = await fetch("pictures?category=all&perPage=all&sort=id_asc", { credentials: "same-origin" });
+            const res = await fetch("api/pictures?category=all&perPage=all&sort=id_asc", { credentials: "same-origin" });
             const data = await res.json();
 
             data.pictures.forEach(picture => {
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         // send patch request to backend
         try {
-            const response = await fetch(`/update-picture/${currentId}`, {
+            const response = await fetch(`api/update-picture/${currentId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 credentials: "same-origin",
