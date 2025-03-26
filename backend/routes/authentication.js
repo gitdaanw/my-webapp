@@ -63,8 +63,19 @@ router.post("/login", async (req, res) => {
 // endpoint to logout
 // POST /authentication/logout
 router.post("/logout", (req, res) => {
-    req.session.destroy();
-    res.json({message: "Logged out"});
+  req.session.destroy(err => {
+    if (err) {
+      console.error("Logout failed:", err);
+      return res.status(500).json({ message: "Logout failed" });
+    }
+
+    res.clearCookie("connect.sid", {
+      secure: true,
+      sameSite: "none"
+    });
+
+    res.json({ message: "Logged out" });
+  });
 });
 
 // endpoint to check if user is logged in

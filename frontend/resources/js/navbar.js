@@ -34,7 +34,7 @@ async function updateNavbar() {
 
     if (loggedInUser) {
         document.getElementById("logoutLink").addEventListener("click", async function () {
-            await fetch(`${API_BASE_URL}/authentication/logout`, { method: "POST" });
+            await fetch(`${API_BASE_URL}/authentication/logout`, { method: "POST", credentials: "include"  });
             alert("Uitloggen succesvol!");
             window.location.href = "/";
         });
