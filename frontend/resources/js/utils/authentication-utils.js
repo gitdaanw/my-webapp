@@ -4,7 +4,7 @@ import { API_BASE_URL } from "./api-base.js";
 // check if a user is logged in
 export async function checkLogin() {
     try {
-        const res = await fetch(`${API_BASE_URL}/api/authentication/check`, { credentials: "same-origin" });
+        const res = await fetch(`${API_BASE_URL}/authentication/check`, { credentials: "same-origin" });
         if (res.ok) {
             return await res.json(); // logged in user information
         } 
