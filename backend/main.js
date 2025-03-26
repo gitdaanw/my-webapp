@@ -37,7 +37,10 @@ const { requireLoginPage, requireLoginApi } = require("./utils/authentication");
 // resave prevents saving session if no changes are made
 // saveUnintialized prevents storing empty sessions
 // without database the session is lost upon reset of node.js server
-const isProduction = process.env.NODE_ENV === "production";
+const env = process.env.NODE_ENV || "development";
+const isProduction = env === "production";
+
+console.log("Running in:", env);
 
 webServer.use(session({
   secret: "your-secret-key",
