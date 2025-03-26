@@ -1,4 +1,6 @@
-// TODO fix this as it gives continuous 401s
+// import base URL for deployed functionality and local testing
+import { API_BASE_URL } from "./utils/api-base.js";
+
 // check if a user is logged in
 export async function checkLogin() {
     try {
