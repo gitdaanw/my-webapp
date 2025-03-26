@@ -1,5 +1,5 @@
 // import base URL for deployed functionality and local testing
-import { API_BASE_URL } from "./api-base-url.js";
+import { API_BASE_URL } from "./api-base.js";
 
 // check if a user is logged in
 export async function checkLogin() {
