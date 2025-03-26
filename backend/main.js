@@ -36,15 +36,17 @@ const { requireLoginPage, requireLoginApi } = require("./utils/authentication");
 // resave prevents saving session if no changes are made
 // saveUnintialized prevents storing empty sessions
 // without database the session is lost upon reset of node.js server
+const isProduction = process.env.NODE_ENV === "production";
+
 webServer.use(session({
-    secret: "your-secret-key",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: true,
-      sameSite: "none"
-    }
-  }));
+  secret: "your-secret-key",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax"
+  }
+}));
 
 // remove .html from URLs
 webServer.use((req, res, next) => {
