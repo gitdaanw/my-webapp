@@ -9,16 +9,9 @@ const Picture = require("./models/Picture");
 const User = require("./models/User");
 
 // sync the model when starting server
-const seedPictures = require("./scripts/seed-pictures");
-
-sequelize.sync().then(async () => {
-  console.log("✅ Database synced");
-
-  // Seed automatisch in productie als de DB nog leeg is
-//   if (process.env.NODE_ENV === "production") {
-//     await seedPictures();
-//   }
-// });
+sequelize.sync().then(() => {
+    console.log("Database synced");
+});
 
 // authentication
 const session = require("express-session");
