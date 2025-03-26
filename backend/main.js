@@ -37,8 +37,10 @@ const { requireLoginPage, requireLoginApi } = require("./utils/authentication");
 // resave prevents saving session if no changes are made
 // saveUnintialized prevents storing empty sessions
 // without database the session is lost upon reset of node.js server
+
+
 const env = process.env.NODE_ENV || "development";
-const isProduction = env === "production";
+const isProduction = process.env.NODE_ENV === "production" || process.env.WEBSITE_SITE_NAME !== undefined;
 
 console.log("Running in:", env);
 
@@ -47,7 +49,7 @@ webServer.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: isProduction,
+    secure: isProduction,              // secure cookies only in production
     sameSite: isProduction ? "none" : "lax"
   }
 }));
