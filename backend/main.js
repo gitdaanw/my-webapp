@@ -1,8 +1,15 @@
+const cors = require("cors");
 const express = require("express"); // impport express framework
 const path = require("path"); // import path module, this is used to work with file paths
 
 const webServer = express(); // create new instance of express
 const PORT = 3000; 
+
+// Enable CORS for requests from your frontend
+webServer.use(cors({
+    origin: "https://agreeable-mud-02e923310.6.azurestaticapps.net", // your deployed frontend
+    credentials: true
+}));
 
 const sequelize = require("./sequelize");
 const Picture = require("./models/Picture");
