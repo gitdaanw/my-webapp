@@ -16,8 +16,15 @@ const Picture = require("./models/Picture");
 const User = require("./models/User");
 
 // sync the model when starting server
-sequelize.sync().then(() => {
-    console.log("Database synced");
+const seedPictures = require("./scripts/seed-pictures");
+
+sequelize.sync().then(async () => {
+    console.log("✅ Database synced");
+
+    if (process.env.NODE_ENV === "production") {
+        await seedPictures();
+        console.log("✅ Seeding finished");
+    }
 });
 
 // authentication
