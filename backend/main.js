@@ -3,6 +3,7 @@ const express = require("express"); // impport express framework
 const path = require("path"); // import path module, this is used to work with file paths
 
 const webServer = express(); // create new instance of express
+webServer.set("trust proxy", 1);
 const PORT = process.env.PORT || 3000;
 
 // Enable CORS for requests from your frontend
