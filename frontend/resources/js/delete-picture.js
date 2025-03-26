@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // load details for selected picture into form
     async function loadPictureIntoForm(id) {
         try {
-            const res = await fetch(`${API_BASE_URL}/pictures/${id}`, { credentials: "same-origin" });
+            const res = await fetch(`${API_BASE_URL}/pictures/${id}`, { credentials: "include" });
             const picture = await res.json();
             currentId = picture.id;
 
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function loadPictureList() {
         try {
             const res = await fetch(`${API_BASE_URL}/pictures?category=all&perPage=all&sort=id-asc`, {
-                credentials: "same-origin"
+                credentials: "include"
             });
             const data = await res.json();
 
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         try {
             const response = await fetch(`${API_BASE_URL}/delete-picture/${currentId}`, {
                 method: "DELETE",
-                credentials: "same-origin"
+                credentials: "include"
             });
 
             if (response.ok) {

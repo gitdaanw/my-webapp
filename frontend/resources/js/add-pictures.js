@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                credentials: "same-origin", // needed for session-cookie
+                credentials: "include", // needed for session-cookie
                 body: JSON.stringify(newPicture)
             });
 

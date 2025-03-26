@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     async function loadPictureIntoForm(id) {
         try {
             // fetch picture using id
-            const res = await fetch(`${API_BASE_URL}/pictures/${id}`, { credentials: "same-origin" });
+            const res = await fetch(`${API_BASE_URL}/pictures/${id}`, { credentials: "include" });
             const picture = await res.json();
             currentId = picture.id;
 
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // function to fetch pictures collection and load dropdown list
     async function loadPictureList() {
         try {
-            const res = await fetch(`${API_BASE_URL}/pictures?category=all&perPage=all&sort=id-asc`, { credentials: "same-origin" }); // sorting on id
+            const res = await fetch(`${API_BASE_URL}/pictures?category=all&perPage=all&sort=id-asc`, { credentials: "include" }); // sorting on id
             const data = await res.json();
 
             // prevent crash if wrong format is used
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             const response = await fetch(`${API_BASE_URL}/update-picture/${currentId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
-                credentials: "same-origin",
+                credentials: "include",
                 body: JSON.stringify(updatedData)
             });
 

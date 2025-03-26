@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await fetch(`${API_BASE_URL}/authentication/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                credentials: "same-origin",
+                credentials: "include",
                 body: JSON.stringify({ username, password })
             });
 

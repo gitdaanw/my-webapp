@@ -19,11 +19,11 @@ const User = require("./models/User");
 const seedPictures = require("./scripts/seed-pictures");
 
 sequelize.sync().then(async () => {
-    console.log("✅ Database synced");
+    console.log("Database synced");
 
     if (process.env.NODE_ENV === "production") {
         await seedPictures();
-        console.log("✅ Seeding finished");
+        console.log("Seeding finished");
     }
 });
 
