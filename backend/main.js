@@ -15,10 +15,10 @@ sequelize.sync().then(async () => {
   console.log("✅ Database synced");
 
   // Seed automatisch in productie als de DB nog leeg is
-  if (process.env.NODE_ENV === "production") {
-    await seedPictures();
-  }
-});
+//   if (process.env.NODE_ENV === "production") {
+//     await seedPictures();
+//   }
+// });
 
 // authentication
 const session = require("express-session");
