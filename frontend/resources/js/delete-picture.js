@@ -1,6 +1,11 @@
 // import base URL for deployed functionality and local testing
 import { API_BASE_URL } from "./utils/api-base.js";
 
+/* 
+This file contains the add-picture javascript
+*/
+
+// async function to enable usage of await
 document.addEventListener("DOMContentLoaded", async function () {
     const deletePictureForm = document.getElementById("deletePictureForm");
     const dropdownButton = document.getElementById("dropdownButton");

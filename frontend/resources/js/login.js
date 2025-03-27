@@ -1,8 +1,13 @@
 // import base URL for deployed functionality and local testing
 import { API_BASE_URL } from "./utils/api-base.js";
 
-document.getElementById("loginForm").addEventListener("submit", async function (event) {
-    event.preventDefault();
+/* 
+This file contains javascript for login page
+*/
+
+
+document.getElementById("loginForm").addEventListener("submit", async function (event) { // using async it waits for form to be submitted
+    event.preventDefault(); // prevents page reload default form behavior
 
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();

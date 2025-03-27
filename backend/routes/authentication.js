@@ -4,6 +4,15 @@ const router = express.Router();
 
 const User = require("../models/User");
 
+/* 
+This file defines endpoints for;
+- registering a new user
+- logging in
+- logging out
+- checking if a user is logged in
+- deletion of a user, not properly setup, can be used in Postman to delete users during testing
+*/
+
 // endpoint to register
 // POST /authentication/register
 router.post("/register", async (req, res) => {
@@ -25,7 +34,7 @@ router.post("/register", async (req, res) => {
       const passwordHash = await bcrypt.hash(password, 10);
       
       // create the user with default role admin
-      const user = await User.create({ username, passwordHash, role: "admin" });
+      const user = await User.create({ username, passwordHash, role: "admin" }); // TODO: change default role later
       
       // after successfull registration user is directly logged in
       req.session.user = { username: user.username, role: user.role };

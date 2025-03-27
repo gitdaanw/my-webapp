@@ -3,6 +3,10 @@ const router = express.Router();
 const { requireLoginPage } = require("../../utils/authentication");
 const Picture = require("../../models/Picture");
 
+/* 
+This file defines a protected route to add a new picture
+*/
+
 // route post /add-pictures, with requiredlogin
 // demo usage only
 router.post("/", requireLoginPage, async (req, res) => {

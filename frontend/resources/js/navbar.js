@@ -2,6 +2,10 @@ import { checkLogin } from "./utils/authentication-utils.js";
 // import base URL for deployed functionality and local testing
 import { API_BASE_URL } from "./utils/api-base.js";
 
+/* 
+This file contains javascript for the dynamic navbar
+*/
+
 async function updateNavbar() {
     const navbarLinksContainer = document.querySelector(".navbar-links");
     const homeLink = `<a href="/">Home</a>`;

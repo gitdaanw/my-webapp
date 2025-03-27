@@ -1,24 +1,27 @@
-const cors = require("cors");
+const cors = require("cors"); // import cors, needed to have backend talk to frontend
 const express = require("express"); // impport express framework
 const path = require("path"); // import path module, this is used to work with file paths
 
 const webServer = express(); // create new instance of express
-webServer.set("trust proxy", 1);
+webServer.set("trust proxy", 1); // "trust proxy" enables secure cookie usage when behind a reverse proxy, as is Azure
+
 const PORT = process.env.PORT || 3000;
 
-// Enable CORS for requests from your frontend
+// enable CORS to allow requests from frontend
 webServer.use(cors({
-    origin: "https://agreeable-mud-02e923310.6.azurestaticapps.net", // your deployed frontend
-    credentials: true
+    origin: "https://agreeable-mud-02e923310.6.azurestaticapps.net", // deployed frontend
+    credentials: true   // needed to be able to handle cookies
 }));
 
+// sequalize related
 const sequelize = require("./sequelize");
-const Picture = require("./models/Picture");
-const User = require("./models/User");
+const Picture = require("./models/Picture"); // import picture table
+const User = require("./models/User"); // import user table
 
 // sync the model when starting server
 const seedPictures = require("./scripts/seed-pictures");
 
+// code to seed database, method checks if there is data in the database first
 sequelize.sync().then(async () => {
     console.log("Database synced");
 
@@ -31,21 +34,21 @@ sequelize.sync().then(async () => {
 // authentication
 const session = require("express-session");
 webServer.use(express.json());
-const { requireLoginPage, requireLoginApi } = require("./utils/authentication");
+const { requireLoginPage, requireLoginApi } = require("./utils/authentication"); // imports authentication methods
 
 // session management, using temp secret, not for production purpose
 // resave prevents saving session if no changes are made
 // saveUnintialized prevents storing empty sessions
 // without database the session is lost upon reset of node.js server
 
-
+// adds logging to see what environment is running at start
+// might be better to move to a separate file later
 const env = process.env.NODE_ENV || "development";
 const isProduction = process.env.NODE_ENV === "production" || process.env.WEBSITE_SITE_NAME !== undefined;
-
 console.log("Running in:", env);
 
 webServer.use(session({
-  secret: "your-secret-key",
+  secret: "your-secret-key", // this needs to be fixed, I should not share secret like this in code
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -54,7 +57,7 @@ webServer.use(session({
   }
 }));
 
-// remove .html from URLs
+// remove .html from URLs using slice
 webServer.use((req, res, next) => {
     if (req.path.endsWith(".html")) {
         return res.redirect(req.path.slice(0, -5));
@@ -62,7 +65,7 @@ webServer.use((req, res, next) => {
     next();
 });
 
-// using a different filestructure, this allows the use of my files from frontend folder
+// serve my frontend folder to be able to use my .html, .css and .js
 webServer.use(express.static(path.join(__dirname, "../frontend")));
 
 // ordering matters in this file to handle files correctly
@@ -75,11 +78,9 @@ webServer.get("/update-picture", requireLoginPage, (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend/update-picture.html"));
 });
 
-webServer.get("/update-picture", requireLoginPage, (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/update-picture.html"));
-});
+// TODO later, add delete-picture route as also protected
 
-// handle api requests
+// route mounting, might be moved to function later on
 webServer.use("/api/pictures", require("./routes/pictures"));
 webServer.use("/api/authentication", require("./routes/authentication"));
 webServer.use("/api/", require("./routes/home"));

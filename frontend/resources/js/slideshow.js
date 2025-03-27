@@ -1,6 +1,11 @@
 // import base URL for deployed functionality and local testing
 import { API_BASE_URL } from "./utils/api-base.js";
 
+
+/* 
+This file contains javascript for the slideshow located on homepage
+*/
+
 document.addEventListener("DOMContentLoaded", async function () {
     const slideshowImage = document.getElementById("slideshowImage");
     const slideshowDescription = document.getElementById("slideshowDescription");

@@ -3,6 +3,10 @@ const router = express.Router();
 const { requireLoginPage } = require("../../utils/authentication");
 const Picture = require("../../models/Picture");
 
+/* 
+This file defines a protected route to delete a picture
+*/
+
 // route delete /pictures/id, requirelogin, delete picture from collection
 router.delete("/:id", requireLoginPage, async (req, res) => {
     const id = Number(req.params.id);

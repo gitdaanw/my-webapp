@@ -3,11 +3,18 @@ import { capitalize } from "./utils/string-utils.js";
 // import base URL for deployed functionality and local testing
 import { API_BASE_URL } from "./utils/api-base.js";
 
+/* 
+This file contains the add-picture javascript
+*/
+
+// async function to enable usage of await
 document.addEventListener("DOMContentLoaded", async function () {
     const addPictureForm = document.getElementById("addPictureForm");
     const submitButton = document.querySelector("button[type='submit']");
 
     // trigger picture submission when submit button is clicked
+    // this is redundant, as submit button already performs thid by default
+    // TODO delete
     submitButton.addEventListener("click", function () {
         addPictureForm.dispatchEvent(new Event("submit", { cancelable: true }));
     });

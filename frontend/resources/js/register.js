@@ -1,5 +1,12 @@
 import { API_BASE_URL } from "./utils/api-base.js";
 
+
+
+/* 
+This file contains javascript for register
+// TODO add verification and rules
+*/
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("registerForm");
 

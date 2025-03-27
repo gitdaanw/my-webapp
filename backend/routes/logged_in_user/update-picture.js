@@ -3,6 +3,10 @@ const router = express.Router();
 const { requireLoginPage } = require("../../utils/authentication");
 const Picture = require("../../models/Picture");
 
+/* 
+This file defines a protected route to update a picture
+*/
+
 // route PATCH /pictures/id, requirelogin, update existing picture
 router.patch("/:id", requireLoginPage, async (req, res) => {
     // define the filepath to collection

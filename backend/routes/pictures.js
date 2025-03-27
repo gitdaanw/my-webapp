@@ -6,6 +6,16 @@ const { requireLoginPage } = require("../utils/authentication");
 
 const DEFAULT_SORT = "date-asc"; // adds a backup sort default
 
+/*
+This file handles public and for now one protected API endpoints used for interacting with pictures.
+It contains the following endpoints:
+- /pictures - overview of pictures using sorting, categories and pictures per page
+- /pictures/categories - list the categories, used for testing
+- /pictures/count - helper route to retrieve the picture count
+- /pictures/:id - allows looking for a picture using the id by doing pictures/5
+- /pictures/:id - delete route, to delete pictures // TODO move to /logged_in_user
+*/
+
 // GET route to get pictures with default sorting, category selection and pictures per page
 router.get("/", async (req, res) => {
     try {
@@ -70,7 +80,7 @@ router.get("/count", async (req, res) => {
   
       if (category && category !== "all") {
         where.category_nl = sequelize.where(
-          sequelize.fn("LOWER", sequelize.col("category_nl")),
+          sequelize.fn("LOWER", sequelize.col("category_nl")), // col represents a column in the database, needed for queries like this
           category.toLowerCase()
         );
       }
@@ -100,6 +110,7 @@ router.get("/:id", async (req, res) => {
   });
 
 // DELETE route for deletion of a single picture, requires login before use
+// TODO need to move this route to /logged_in_user and update so it checks user role
 router.delete("/:id", requireLoginPage, async (req, res) => {
     try {
       const picture = await Picture.findByPk(req.params.id);

@@ -1,7 +1,12 @@
 // import base URL for deployed functionality and local testing
 import { API_BASE_URL } from "./utils/api-base.js";
 
-document.addEventListener("DOMContentLoaded", async function () {
+
+/* 
+This file contains javascript for the update-picture page
+*/
+
+document.addEventListener("DOMContentLoaded", async function () { // wait for content to be loaded
     const updatePictureForm = document.getElementById("updatePictureForm");
     const dropdownButton = document.getElementById("dropdownButton");
     const dropdownList = document.getElementById("dropdownList");

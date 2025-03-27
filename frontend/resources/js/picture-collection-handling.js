@@ -4,6 +4,11 @@ const DEFAULT_SORT = "date-asc";
 // import base URL for deployed functionality and local testing
 import { API_BASE_URL } from "./utils/api-base.js";
 
+
+/* 
+This file contains javascript for the /pictures page
+*/
+
 document.addEventListener("DOMContentLoaded", async () => {
     
     const pictureContainer = document.getElementById("gallery");

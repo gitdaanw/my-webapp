@@ -1,3 +1,8 @@
+
+/* 
+This file contains authentication utility functions
+*/
+
 // import base URL for deployed functionality and local testing
 import { API_BASE_URL } from "./api-base.js";
 

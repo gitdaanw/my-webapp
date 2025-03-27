@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const Picture = require("../models/Picture");
 
+/*
+THis file contains routes for /index.html. Currently it only 
+handles serving a random picture used for slideshow on /index.html
+*/
+
 // GET route for home to get random picture
 router.get("/slideshow", async (req, res) => {
   try {

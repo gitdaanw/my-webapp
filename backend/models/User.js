@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../sequelize");
 
+// define the user model
 const User = sequelize.define("User", {
     id: {
         type: DataTypes.INTEGER,
@@ -10,9 +11,9 @@ const User = sequelize.define("User", {
     username: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
+        unique: true // username is unique, prevents doubles
     },
-    passwordHash: {
+    passwordHash: { // TODO naming convention error, I need to update this later password_hash
         type: DataTypes.STRING,
         allowNull: false
     },

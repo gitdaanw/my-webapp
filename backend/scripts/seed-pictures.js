@@ -1,6 +1,6 @@
 /* This script is meant to seed the db with 
 data connected to the pictures found under frontend/media/images
-To run you can run:
+To run it execute:
 node backend/scripts/seed-pictures.js */
 
 const fs = require("fs");
@@ -20,7 +20,7 @@ async function seedPictures() {
             return;
         }
 
-        const filePath = path.join(__dirname, "../data/backup/backup - picture_collection.json");
+        const filePath = path.join(__dirname, "../data/backup/backup - picture_collection.json"); // point to backup json
         const rawData = fs.readFileSync(filePath, "utf8");
         const jsonData = JSON.parse(rawData);
 
@@ -30,7 +30,7 @@ async function seedPictures() {
         }
 
         for (const pic of jsonData.pictures) {
-            await Picture.create({
+            await Picture.create({ // could be done using bulkCreate function but for small collection its fine
                 image: pic.image,
                 date: pic.date,
                 country_nl: pic.country_nl,

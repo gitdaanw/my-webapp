@@ -1,4 +1,6 @@
-// This script has helper functions that allow dyncamic adding of elements and content on multiple pages
+/* 
+This file has helper functions that allow dyncamic adding of elements and content on multiple pages
+*/
 
 function loadComponent(id, file) {
     return fetch(file)
